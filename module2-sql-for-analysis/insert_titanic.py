@@ -11,12 +11,6 @@ DB_USER = os.getenv("DB_USER")
 DB_PASS = os.getenv("DB_PASS")
 DB_HOST = os.getenv("DB_HOST")
 
-'''
-DB_NAME = 'vzzoxwvs'
-DB_USER = 'vzzoxwvs'
-DB_PASS = 'iIIvP8NBWsCVtAY8gdkgiVr_nz5SYwjl'
-DB_HOST = 'hansken.db.elephantsql.com'
-'''
 
 # Connect to ElephantSQL-hosted PostgreSQL
 connection = psycopg2.connect(
@@ -30,7 +24,7 @@ print("CURSOR:", cursor)
 
 connection.commit()
 
-##Create Character Table in PostGRES ####
+##Create Passenger Table in PostGRES ####
 create_titanic_table_query = '''
 DROP TABLE IF EXISTS titanic_table;
 CREATE TABLE titanic_table (
@@ -52,9 +46,9 @@ connection.commit()
 FILEPATH = 'titanic.csv'
 df = pd.read_csv(FILEPATH)
 print(df.columns.tolist())
-# do this before converting to native types, because this actually converts to np.bool
+# Converts to np.bool
 df["Survived"] = df["Survived"].values.astype(bool)
-# converts numpy dtypes to native python dtypes (avoids psycopg2.ProgrammingError: can't adapt type 'numpy.int64')
+# Converts numpy dtypes to native python dtypes (avoids psycopg2.ProgrammingError: can't adapt type 'numpy.int64')
 df = df.astype("object")
 
 titanic_list = list(df.to_records(index=False))
