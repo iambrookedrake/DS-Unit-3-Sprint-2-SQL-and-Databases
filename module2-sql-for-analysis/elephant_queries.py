@@ -31,21 +31,20 @@ cursor.execute('SELECT * from test_table;')
 results = cursor.fetchall()
 print(results)
 
-'''
-###Connect to 
+
+###Connect to SQLite3 DB for RPG data #######
 
 import sqlite3
 
 sl_conn = sqlite3.connect("rpg_db.sqlite3")
 sl_cursor = sl_conn.cursor()
-characters = sl_cursor.execute('SELECT * from charactercreator_character')
-print(characters)
+characters = sl_cursor.execute('SELECT * from charactercreator_character').fetchall()
+#print(characters)
 
-##Create Character
+##Create Character Table in PostGRES ####
 create_character_table_query = '''
-'''
 CREATE TABLE IF NOT EXISTS rpg_characters (
-    	character_id SERIAL PRIMARY KEY,
+    character_id SERIAL PRIMARY KEY,
 	name VARCHAR(30),
 	level INT,
 	exp INT,
@@ -56,17 +55,20 @@ CREATE TABLE IF NOT EXISTS rpg_characters (
 	wisdom INT
 )
 '''
-'''
+
 cursor.execute(create_character_table_query)
 conn.commit()
 
-## insert character data
+## insert character data in postgres#####
+#(1, 'Aliquid iste optio reiciendi', 0, 0, 10, 1, 1, 1, 1)
+
 for character in characters:
-    insert_query = f''''''INSERT INTO rpg_characters (character_id, name, level, esp, hp, strength, intelligence, dexterity, wisdom)
-    {character}
+    insert_query = f'''INSERT INTO rpg_characters
+		(character_id, name, level, exp, hp, strength, intelligence, dexterity, wisdom) VALUES
+    	{character}
     '''
-'''
+
     cursor.execute(insert_query)
 
-print(insert_query)
-'''
+#print(insert_query)
+conn.commit()
