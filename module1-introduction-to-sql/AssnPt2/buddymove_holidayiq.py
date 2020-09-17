@@ -2,14 +2,12 @@ import pandas as pd
 import os
 import sqlite3
 
-df = pd.read_csv("buddymove_holidayiq.csv")
+df = pd.read_csv("module1-introduction-to-sql/assnpt2/buddymove_holidayiq.csv")
 # print(df)
 
-# C:\Users\iambr\Desktop\DS-Unit-3-Sprint-2-SQL-and-Databases\
-# module1-introduction-to-sql\
-DB_FILEPATH = os.path.join(os.path.dirname(__file__), "..",
-                           "C:/Users/iambr/Desktop/DS-Unit-3-Sprint-2-SQL-and-Databases/module1-introduction-to-sql/buddymove_holidayiq.sqlite3")
-# C:/Users/iambr/Documents/sqlite/buddymove_holidayiq.sqlite3")
+DB_FILEPATH = os.path.join(os.path.dirname(__file__),
+                           "buddymove_holidayiq.sqlite3")
+
 connection = sqlite3.connect(DB_FILEPATH)
 print("CONNECTION:", connection)
 

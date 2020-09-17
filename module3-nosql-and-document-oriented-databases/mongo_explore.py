@@ -20,14 +20,14 @@ client = pymongo.MongoClient(connection_uri)
 print("----------------")
 print("CLIENT:", type(client), client)
 print("----------------")
-print(client.list_database_names())
+#print(client.list_database_names())
 
 db = client.sample_analytics
 print(db.list_collection_names())
 
 #Access a specific collection
 customers = db.customers
-print(customers.count_documents({}))
+print(customers.count_documents({}), " documents")
 
 
 print("------------")
@@ -39,9 +39,9 @@ with open('test_data_json.txt') as json_file:
 
 my_db = client.rpg_data
 character_table = my_db.characters
-character_table.update(rpg_data)#query and update(containing docs)
+#character_table.update_one(rpg_data)#query and update(containing docs)
 #character_table.insert_many(rpg_data)#Upsert True or Update
-print(character_table.count_documents({}))
+#print(character_table.count_documents({}))
 
 #breakpoint()
 client.close()

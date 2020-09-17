@@ -2,9 +2,8 @@ import os
 import sqlite3
 import pandas as pd
 
-DB_FILEPATH = os.path.join(os.path.dirname(__file__), "..",
-                           "C:/Users/iambr/Desktop/DS-Unit-3-Sprint-2-SQL-and-Databases/module1-introduction-to-sql/rpg_db.sqlite3")
-# "C:/Users/iambr/Documents/sqlite/rpg_db.sqlite3")
+DB_FILEPATH = os.path.join(os.path.dirname(__file__),
+                           "rpg_db.sqlite3")
 
 connection = sqlite3.connect(DB_FILEPATH)
 print("CONNECTION:", connection)
