@@ -101,21 +101,7 @@ GROUP BY characters.character_id
 
 """
 result5 = cursor.execute(query5).fetchall()
-# Need Help here
-'''I need help here:::
-def get_data(query, connection):
-    Function to get data from sqlite db
-    cursor = connection.cursor()
-    result = cursor.execute(query).fetchall()
 
-    #Get columns from cursor object
-    #columns = list(map(lambda x: x[0], cursor.description))
-
-    # assign to DataFrame
-    df = pd.DataFrame(data=result, columns=columns)
-    return df
-
-get_data(query5, connection)'''
 df = pd.DataFrame(data=result5, columns=['character_id',
                   'Item_Count', 'Weapon_Count'])
 
