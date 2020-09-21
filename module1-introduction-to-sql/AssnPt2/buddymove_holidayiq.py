@@ -11,6 +11,8 @@ DB_FILEPATH = os.path.join(os.path.dirname(__file__),
 connection = sqlite3.connect(DB_FILEPATH)
 print("CONNECTION:", connection)
 
+df.to_sql('buddymove', con=connection, if_exists='replace')
+
 cursor = connection.cursor()
 print("CURSOR:", cursor)
 print(" ")
