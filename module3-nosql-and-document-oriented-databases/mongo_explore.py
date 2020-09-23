@@ -34,7 +34,7 @@ print("------------")
 print("Assignment 3:")
 
 import json
-with open('test_data_json.txt') as json_file:
+with open('module3-nosql-and-document-oriented-databases/test_data_json.txt') as json_file:
     rpg_data = json.load(json_file)
 
 my_db = client.rpg_data
@@ -59,3 +59,4 @@ print("What was easier, and what was harder?")
 print("It's not difficult but tedious, to change bits of code here and there.")
 print("PostgreSQL is closer to a spoken language that makes sense to read.")
 print("I prefer sqlite for its simplicity.")
+print("")
