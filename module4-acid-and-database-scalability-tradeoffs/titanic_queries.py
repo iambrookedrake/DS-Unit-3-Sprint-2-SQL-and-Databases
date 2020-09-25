@@ -43,7 +43,7 @@ CREATE TABLE titanic_table (
 cursor.execute(create_titanic_table_query)
 connection.commit()
 
-FILEPATH = 'titanic.csv'
+FILEPATH = 'module4-acid-and-database-scalability-tradeoffs/titanic.csv'
 df = pd.read_csv(FILEPATH)
 #print(df.columns.tolist())
 # Converts to np.bool
@@ -71,6 +71,7 @@ print("-------------")
 print("Assignment 4:")
 print("-------------")
 # QUESTION 1
+print("QUESTION 1:")
 print("How many passengers survived, and how many died?")
 query1a = """
 SELECT
@@ -94,6 +95,7 @@ print("Total Died: ", result1b[0])
 print(" ")
 
 # QUESTION 2
+print("QUESTION 2:")
 print("How many passengers were in each class?")
 # 1st Class
 query2a = """
@@ -129,7 +131,8 @@ result2c = cursor.fetchone()
 print("Total Passengers in 3rd Class: ", result2c[0])
 print(" ")
 
-# Question 3
+# QUESTION 3
+print("QUESTION 3:")
 print("How many passengers survived/died within each class?")
 # 1st Class Survived
 query3aS = """
@@ -198,7 +201,8 @@ result3cD = cursor.fetchone()
 print("Passengers Who Died in 3rd Class: ", result3cD[0])
 print(" ")
 
-#Question 4
+# QUESTION 4
+print("QUESTION 4:")
 print("What was the average age of survivors vs nonsurvivors?")
 # Average Age Survived
 query4S = """
@@ -223,7 +227,8 @@ result4D = cursor.fetchone()
 print("Average Age of NON-Survivors: ", round(result4D[0]/result1b[0],1))
 print(" ")
 
-#Question 5
+# QUESTION 5
+print("QUESTION 5")
 print("What was the average age of each passenger class?")
 # Average Age 1st Class
 query5a = """
@@ -259,7 +264,8 @@ result5c = cursor.fetchone()
 print("Average Age of 3rd Class Passengers: ", round(result5c[0]/result2c[0],1))
 print(" ")
 
-# Question 6
+# QUESTION 6
+print("QUESTION 6:")
 print("What was the average fare by passenger class? By survival?")
 # Average Fare 1st Class
 query6a = """
@@ -317,7 +323,8 @@ result6D = cursor.fetchone()
 print("Average Fare Among Non-Survivors: ", round(result6D[0]/result1b[0],1))
 print(" ")
 
-# Question 7
+# QUESTION 7
+print("QUESTION 7:")
 print("How many siblings/spouses aboard on average, by passenger class?")
 # Average siblingsspouses_aboard 1st Class
 query7a = """
@@ -378,7 +385,8 @@ print("Average siblingsspouses_aboard Among Non-Survivors: ", round(result7D[0]/
 print(" ")
 
 
-# Question 8
+# QUESTION 8
+print("QUESTION 8:")
 print("How many parents/children aboard on average, by passenger class?")
 # Average parentschildren_aboard 1st Class
 query8a = """
@@ -438,8 +446,9 @@ result8D = cursor.fetchone()
 print("Average parentschildren_aboard Among Non-Survivors: ", round(result8D[0]/result1b[0],2))
 print(" ")
 
-# Question 9
-print("Do any passengers have the same name?")
+# QUESTION 9
+print("QUESTION 9:")
+# Do any passengers have the same name?
 query9 = """
 SELECT
     COUNT(name)
@@ -450,12 +459,14 @@ FROM
 """
 cursor.execute(query9)
 result9 = cursor.fetchone()
+
+if result9[0]-resulttotal[0]==0:
+  samename='No'
+else:
+  samename='Yes'
+print("Do any passengers have the same name? ",samename)
+
 print("Passengers with Same Name: ", result9[0]-resulttotal[0])
 print(" ")
 
-#
-#print("(Bonus! Hard, may require pulling and processing with Python) How many married couples were aboard the Titanic? Assume that two people (one Mr. and one Mrs.) with the same last name and with at least 1 sibling/spouse aboard are a married couple.")
-
-# CLEAN UP
-connection.commit() # actually save the records / run the transaction to insert rows
-
+connection.commit()
